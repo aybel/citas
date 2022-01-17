@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import MsgError from "./MsgError";
-const Formulario = ({ pacientes, setPacientes, paciente }) => {
+const Formulario = ({ pacientes, setPacientes, paciente,setPaciente }) => {
 
     const [nombre, cambiaNombre] = useState('');
     const [dueño, cambiaDueño] = useState('');
@@ -45,12 +45,15 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             //editando
             //Buscar en el arreglo de pacientes y reemeplazar
             //Recorremos los pacientes
+            //Agregamos el id del paciente al nuevo objeto
             objetoPaciente.id = paciente.id;
             const pacientesActualizados = pacientes.map(elemento => {
                return elemento.id == paciente.id ? objetoPaciente : elemento
             });
-            console.log(pacientesActualizados);
+            //console.log(pacientesActualizados);
             setPacientes(pacientesActualizados);
+            //Reniciamos el objeto donde se guarda el paciente a editar
+            setPaciente({});
         } else {
             //nuevo registro
             objetoPaciente.id = uuidv4();
